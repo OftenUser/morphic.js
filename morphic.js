@@ -30,7 +30,7 @@
     Documentation Contents
     ----------------------
     1: Inheritance Hierarchy
-    2. Object Definition TOC
+    2. Object Definition | Table Of Contents
     3: Yet To Implement
     4: Open Issues
     5: Browser Compatibility
@@ -110,9 +110,9 @@
     Rectangle
 
 
-    II. toc
+    II. Object Definition | Table Of Contents
     -------
-    the following list shows the order in which all constructors are
+    The following list shows the order in which all constructors are
     defined. Use this list to locate code in this document:
 
     Global settings
@@ -153,7 +153,7 @@
     HandMorph
     WorldMorph
 
-    * included only for demo purposes
+    * Included only for demo purposes.
 
 
     III. yet to implement
