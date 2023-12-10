@@ -6,12 +6,12 @@
 		<script type="text/javascript" src="morphic.js"></script>
 		<script type="text/javascript">			
 
-			var	worldCanvas, world, hi, hint1, hint2;
+			var worldCanvas, world, hi, hint1, hint2;
 
 			window.onload = function () {
 				worldCanvas = document.getElementById('world');
 				world = new WorldMorph(worldCanvas);
-                // +++ world.worldCanvas.focus();
+                		// +++ world.worldCanvas.focus();
 				world.isDevMode = true;
 
 				hi = new StringMorph(
@@ -35,7 +35,7 @@
 				hint2.setPosition(hint1.bottomLeft());
 				world.add(hint2);
 
-                loop();
+                		loop();
 			};
 
 			function loop() {
