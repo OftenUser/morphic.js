@@ -15,16 +15,16 @@
 
     Snap! is free software: you can redistribute it and/or modify
     it under the terms of the GNU Affero General Public License as
-    published by the Free Software Foundation, either version 3 of
-    the License, or (at your option) any later version.
+    published by the Free Software Foundation, either Version 3 of
+    the License, or (At your option) any later version.
 
     This program is distributed in the hope that it will be useful,
     but WITHOUT ANY WARRANTY; without even the implied warranty of
-    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
     GNU Affero General Public License for more details.
 
     You should have received a copy of the GNU Affero General Public License
-    along with this program.  If not, see <http://www.gnu.org/licenses/>.
+    along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 
     Documentation Contents
@@ -68,9 +68,9 @@
     9. Contributors
 
 
-    1. Inheritance Hierarchy
+    1: Inheritance Hierarchy
     -------------
-    the following tree lists all constructors hierarchically,
+    The following tree lists all constructors hierarchically,
     indentation indicating inheritance. Refer to this list to get a
     contextual overview:
 
@@ -110,7 +110,7 @@
     Rectangle
 
 
-    II. Object Definition | Table Of Contents
+    2: Object Definition | Table Of Contents
     -------
     The following list shows the order in which all constructors are
     defined. Use this list to locate code in this document:
@@ -156,111 +156,111 @@
     * Included only for demo purposes.
 
 
-    III. yet to implement
+    3: Yet To Implement
     ---------------------
-    - keyboard support for scroll frames and lists
-    - virtual keyboard support for Android
+    - Keyboard support for scroll frames and lists.
+    - Virtual keyboard support for Android.
 
 
-    IV. open issues
+    4: Open Issues
     ----------------
-    - clipboard support (copy & paste) for non-textual data
+    - Clipboard support (copy & paste) for non-textual data.
 
 
-    V. browser compatibility
+    5: Browser Compatibility
     ------------------------
-    I have taken great care and considerable effort to make morphic.js
+    I have taken great care and considerable effort to make Morphic.js
     runnable and appearing exactly the same on all current browsers
     available to me:
 
-    - Firefox for Windows
-    - Firefox for Mac
-    - Firefox for Android
-    - Chrome for Windows
-    - Chrome for Mac
-    - Chrome for Android
-    - Safari for Windows (deprecated)
-    - safari for Mac
-    - Safari for iOS (mobile)
-    - IE for Windows (partial support)
-    - Edge for Windows
-    - Opera for Windows
-    - Opera for Mac
+    - Firefox For Windows
+    - Firefox For Mac
+    - Firefox For Android
+    - Chrome For Windows
+    - Chrome For Mac
+    - Chrome For Android
+    - Safari For Windows (Deprecated)
+    - Safari For Mac
+    - Safari For iOS (Mobile)
+    - Internet Explorer For Windows (Partial Support)
+    - Edge For Windows
+    - Opera For Windows
+    - Opera For Mac
 
 
-    VI. the big picture
+    6: The Big Picture
     -------------------
     Morphic.js is completely based on Canvas and JavaScript, it is just
     Morphic, nothing else. Morphic.js is very basic and covers only the
     bare essentials:
 
-        * a stepping mechanism (a time-sharing multiplexer for lively
-          user interaction ontop of a single OS/browser thread)
-        * progressive display updates (only dirty rectangles are
-          redrawn at each display cycle)
-        * a tree structure
-        * a single World per Canvas element (although you can have
+        * A stepping mechanism (A time-sharing multiplexer for lively
+          user interaction ontop of a single OS/browser thread).
+        * Progressive display updates (Only dirty rectangles are
+          redrawn at each display cycle).
+        * A tree structure.
+        * A single World per Canvas element (Although you can have
           multiple worlds in multiple Canvas elements on the same web
-          page)
-        * a single Hand per World (but you can support multi-touch
-          events)
-        * a single text entry focus per World
+          page).
+        * A single Hand per World (but you can support multi-touch
+          events).
+        * A single text entry focus per World.
 
-    In its current state morphic.js doesn't support transforms (you
+    In its current state, Morphic.js doesn't support transforms (You
     cannot rotate Morphs), but with PenMorph there already is a simple
     LOGO-like turtle that you can use to draw onto any Morph it is
     attached to. I'm planning to add special Morphs that support these
     operations later on, but not for every Morph in the system.
-    Therefore these additions ("sprites" etc.) are likely to be part of
-    other libraries ("microworld.js") in separate files.
+    Therefore these additions ("Sprites" ETC.) are likely to be part of
+    other libraries ("Microworld.js") in separate files.
 
-    the purpose of morphic.js is to provide a malleable framework that
+    The purpose of Morphic.js is to provide a malleable framework that
     will let me experiment with lively GUIs for my hobby horse, which
     is drag-and-drop, blocks based programming languages. Those things
-    (BYOB4 - http://byob.berkeley.edu) will be written using morphic.js
+    (BYOB4 - http://byob.berkeley.edu) will be written using Morphic.js
     as a library.
 
 
-    VII. programming guide
+    7: Programming Guide
     ----------------------
     Morphic.js provides a library for lively GUIs inside single HTML
     Canvas elements. Each such canvas element functions as a "world" in
-    which other visible shapes ("morphs") can be positioned and
+    which other visible shapes ("Morphs") can be positioned and
     manipulated, often directly and interactively by the user. Morphs
-    are tree nodes and may contain any number of submorphs ("children").
+    are tree nodes and may contain any number of submorphs ("Children").
 
-    All things visible in a morphic World are morphs themselves, i.e.
+    All things visible in a Morphic World are morphs themselves, I.E.
     all text rendering, blinking cursors, entry fields, menus, buttons,
-    sliders, windows and dialog boxes etc. are created with morphic.js
+    sliders, windows and dialog boxes etc. are created with Morphic.js
     rather than using HTML DOM elements, and as a consequence can be
     changed and adjusted by the programmer regardless of proprietary
     browser behavior.
 
-    Each World has an - invisible - "Hand" resembling the mouse cursor
-    (or the user's finger on touch screens) which handles mouse events,
+    Each World has an - Invisible - "Hand" resembling the mouse cursor
+    (Or the user's finger on touch screens) which handles mouse events,
     and may also have a keyboard focus to handle key events.
 
     The basic idea of Morphic is to continuously run display cycles and
-    to incrementally update the screen by only redrawing those  World
+    to incrementally update the screen by only redrawing those World
     regions which have been "dirtied" since the last redraw. Before
     each shape is processed for redisplay it gets the chance to perform
     a "step" procedure, thus allowing for an illusion of concurrency.
 
 
-    (1) setting up a web page
+    7.1: Setting Up A Web Page
     -------------------------
     Setting up a web page for Morphic always involves three steps:
     adding one or more Canvas elements, defining one or more worlds,
     initializing and starting the main loop.
 
 
-    (a) single world
+    7.1.1: Single World
     -----------------
     Most commonly you will want your World to fill the browsers's whole
     client area. This default situation is easiest and most straight
     forward.
 
-    example html file:
+    Example HTML File:
 
     <!DOCTYPE html>
     <html>
@@ -289,24 +289,24 @@
         </body>
     </html>
 
-    if you use ScrollFrames or otherwise plan to support mouse wheel
+    If you use ScrollFrames or otherwise plan to support mouse wheel
     scrolling events, make sure to add the following inline-CSS
     attribute to the Canvas element:
 
         style="position: absolute;"
 
-    which will prevent the World to be scrolled around instead of the
+    Which will prevent the World to be scrolled around instead of the
     elements inside of it in some browsers.
 
 
-    (b) multiple worlds
+    7.1.2: Multiple Worlds
     -------------------
     If you wish to create a web page with more than one world, make
     sure to prevent each world from auto-filling the whole page and
     include it in the main loop. It's also a good idea to give each
     world its own tabindex:
 
-    example html file:
+    Example HTML File:
 
     <!DOCTYPE html>
     <html>
@@ -315,7 +315,7 @@
             <title>Morphic!</title>
             <script type="text/javascript" src="morphic.js"></script>
             <script type="text/javascript">
-                var	world1, world2;
+                var world1, world2;
 
                 window.onload = function () {
                     world1 = new WorldMorph(
@@ -333,31 +333,31 @@
             </script>
         </head>
         <body>
-            <p>first world:</p>
+            <p>1st World:</p>
             <canvas id="world1" tabindex="1" width="600" height="400"></canvas>
-            <p>second world:</p>
+            <p>2nd World:</p>
             <canvas id="world2" tabindex="2" width="400" height="600"></canvas>
         </body>
     </html>
 
 
-    (c) an application
+    7.1.3: An Application
     -------------------
     Of course, most of the time you don't want to just plain use the
     standard Morphic World "as is" out of the box, but write your own
-    application (something like Scratch!) in it. For such an
+    application (Something like Scratch!) in it. For such an
     application you'll create your own morph prototypes, perhaps
     assemble your own "window frame" and bring it all to life in a
     customized World state. the following example creates a simple
     snake-like mouse drawing game.
 
-    example html file:
+    Example HTML File:
 
     <!DOCTYPE html>
     <html>
         <head>
             <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-            <title>touch me!</title>
+            <title>Touch Me!</title>
             <script type="text/javascript" src="morphic.js"></script>
             <script type="text/javascript">
                 var worldCanvas, sensor;
@@ -403,8 +403,8 @@
         </body>
     </html>
 
-    To get an idea how you can craft your own custom morph prototypes
-    I've included two examples which should give you an idea how to add
+    To get an idea how you can craft your own custom Morph prototypes
+    I've included 2 examples which should give you an idea how to add
     properties, override inherited methods and use the stepping
     mechanism for "livelyness":
 
@@ -412,14 +412,14 @@
         MouseSensorMorph
 
     For the sake of sharing a single file I've included those examples
-    in morphic.js itself. Usually you'll define your additions in a
-    separate file and keep morphic.js untouched.
+    in Morphic.js itself. Usually you'll define your additions in a
+    separate file and keep Norphic.js untouched.
 
 
-    (2) manipulating morphs
+    7.2: Manipulating Morphs
     -----------------------
-    There are many methods to programmatically manipulate morphs. Among
-    the most important and common ones among all morphs are the
+    There are many methods to programmatically manipulate Morphs. Among
+    the most important and common ones among all Morphs are the
     following nine:
 
     * hide()
@@ -429,36 +429,36 @@
     * setExtent(aPoint)
     * setColor(aColor)
 
-    * add(submorph)            - attaches submorph ontop
-    * addBack(submorph)        - attaches submorph underneath
+    * add(submorph)            - Attaches Submorph Ontop
+    * addBack(submorph)        - Attaches Submorph Underneath
 
-    * fullCopy()               - duplication
-    * destroy()                - deletion
+    * fullCopy()               - Duplication
+    * destroy()                - Deletion
 
 
-    (3) events
+    7.3: Events
     ----------
-    All user (and system) interaction is triggered by events, which are
-    passed on from the root element - the World - to its submorphs. The
-    World contains a list of system (browser) events it reacts to in its
+    All user (And system) interaction is triggered by events, which are
+    passed on from the root element - The World - To its Submorphs. The
+    World contains a list of system (Browser) events it reacts to in its
 
         initEventListeners()
 
-    method. Currently there are
+    Method. Currently there are
 
-        - mouse
-        - drop
-        - keyboard
-        - (window) resize
+        - Mouse
+        - Drop
+        - Keyboard
+        - (Window) Resize
 
-    events.
+    Events.
 
-    These system events are dispatched within the morphic World by the
-    World's Hand and its keyboardFocus (usually the active text
+    These system events are dispatched within the Morphic World by the
+    World's Hand and its keyboardFocus (Usually the active text
     cursor).
 
 
-    (a) mouse events:
+    7.3.1: Mouse Events
     -----------------
     The Hand dispatches the following mouse events to relevant morphs:
 
@@ -476,8 +476,8 @@
         mouseMove
         mouseScroll
 
-    If you wish your morph to react to any such event, simply add a
-    method of the same name as the event, e.g:
+    If you wish your Morph to react to any such event, simply add a
+    method of the same name as the event, E.G:
 
         MyMorph.prototype.mouseMove = function(pos) {};
 
@@ -487,7 +487,7 @@
 
         mouseMove(pos, button)
 
-    event method has an additional optional parameter indicating the
+    Event method has an additional optional parameter indicating the
     currently pressed mouse button, which is either 'left' or 'right'.
     You can use this to let users interact with 3D environments.
 
@@ -498,48 +498,48 @@
         mouseEnterBounds(morph)
         mouseLeaveBounds(morph)
 
-    event methods have as optional parameter the morph currently dragged by
+    Event methods have as optional parameter the Morph currently dragged by
     the Hand, if any.
 
-    Events may be "bubbled" up a morph's owner chain by calling
+    Events may be "bubbled" up a Morph's owner chain by calling
 
         this.escalateEvent(functionName, arg)
 
-    in the event handler method's code.
+    In the event handler method's code.
 
-    Likewise, removing the event handler method will render your morph
+    Likewise, removing the event handler method will render your Morph
     passive to the event in question.
 
 
-    (b) context menu:
+    7.3.2: Context Menu
     -----------------
-    By default right-clicking (or single-finger tap-and-hold) on a morph
-    also invokes its context menu (in addition to firing the
+    By default right-clicking (Or single-finger tap-and-hold) on a morph
+    also invokes its context menu (In addition to firing the
     mouseClickRight event). A morph's context menu can be customized by
     assigning a Menu instance to its
 
         customContextMenu
 
-    property, or altogether suppressed by overriding its inherited
+    Property, or altogether suppressed by overriding its inherited
 
         contextMenu()
 
-    method.
+    Method.
 
 
-    (c) dragging:
+    7.3.3: Dragging
     -------------
-    Dragging a morph is initiated when the left mouse button is pressed,
+    Dragging a Morph is initiated when the left mouse button is pressed,
     held and the mouse is moved.
 
-    You can control whether a morph is draggable by setting its
+    You can control whether a Morph is draggable by setting its
 
         isDraggable
 
-    property either to false or true. If a morph isn't draggable itself
+    Property either to false or true. If a Morph isn't draggable itself
     it will pass the pick-up request up its owner chain. This lets you
-    create draggable composite morphs like Windows, DialogBoxes,
-    Sliders etc.
+    create draggable composite Morphs like Windows, DialogBoxes,
+    Sliders, ETC.
 
     Sometimes it is desireable to make "template" shapes which cannot be
     moved themselves, but from which instead duplicates can be peeled
@@ -549,10 +549,10 @@
 
         isTemplate
 
-    property flag to true for any morph whose "isDraggable" property is
-    turned off. When dragging such a Morph the hand will instead grab
+    Property flag to true for any morph whose "isDraggable" property is
+    turned off. When dragging such a Morph, the hand will instead grab
     a duplicate of the template whose "isDraggable" flag is true and
-    whose "isTemplate" flag is false, in other words: a non-template.
+    whose "isTemplate" flag is false, in other words: A non-template.
 
     When creating a copy from a template, the copy's
 
@@ -561,34 +561,34 @@
     is invoked, if it is present.
 
     Dragging is indicated by adding a drop shadow to the morph in hand.
-    If a morph follows the hand without displaying a drop shadow it is
-    merely being moved about without changing its parent (owner morph),
-    e.g. when "dragging" a morph handle to resize its owner, or when
+    If a Morph follows the hand without displaying a drop shadow, it is
+    merely being moved about without changing its parent (Owner Morph),
+    E.G. when "dragging" a Morph handle to resize its owner, or when
     "dragging" a slider button.
 
     Right before a morph is picked up its
 
         selectForEdit
 
-    and
+    And
 
         prepareToBeGrabbed(handMorph)
 
-    methods are invoked, each if it is present. the optional
+    Methods are invoked, each if it is present. the optional
 
         selectForEdit
 
-    if implemented, must return the object that is to be picked up.
-    In addition to just returning the original object chosen by the user
+    If implemented, must return the object that is to be picked up.
+    In addition to just returning the original object chosen by the user,
     your method can also modify the target's environment and instead return
-    a copy of the selected morph if, for example, you would like to implement
-    a copy-on-write mechanism such as in Snap.
+    a copy of the selected Morph if, for example, you would like to implement
+    a copy-on-write mechanism such as in Snap!.
 
-    Immediately after the pick-up the former parent's
+    Immediately after the pick-up, the former parent's
 
         reactToGrabOf(grabbedMorph)
 
-    method is called, again only if it exists.
+    Method is called, again only if it exists.
 
     Similar to events, these  methods are optional and don't exist by
     default. For a simple example of how they can be used to adjust
@@ -596,46 +596,46 @@
     implementation in FrameMorph.
 
 
-    (d) dropping:
+    7.3.4: Dropping
     -------------
     Dropping is triggered when the left mouse button is either pressed
-    or released while the Hand is dragging a morph.
+    or released while the Hand is dragging a Morph.
 
-    Dropping a morph causes it to become embedded in a new owner morph.
+    Dropping a Morph causes it to become embedded in a new owner Morph.
     You can control this embedding behavior by setting the prospective
     drop target's
 
         acceptsDrops
 
-    property to either true or false, or by overriding its inherited
+    Property to either true or false, or by overriding its inherited
 
         wantsDropOf(aMorph)
 
-    method.
+    Method.
 
     Right before dropping a morph the designated new parent's optional
 
         selectForEdit
 
-    method is invoked if it is present. Again, if implemented this method
+    Method is invoked if it is present. Again, if implemented this method
     must return the new parent for the morph that is about to be dropped.
     Again, in addition to just returning the designeted drop-target
     your method can also modify its environment and instead return
     a copy of the new parent if, for example, you would like to implement
-    a copy-on-write mechanism such as in Snap.
+    a copy-on-write mechanism such as in Snap!.
 
     Right after a morph has been dropped its
 
         justDropped(handMorph)
 
-    method is called, and its new parent's
+    Method is called, and its new parent's
 
         reactToDropOf(droppedMorph, handMorph)
 
-    method is invoked, again only if each method exists.
+    Method is invoked, again only if each method exists.
 
     Similar to events, these  methods are optional and by default are
-    not present in morphs by default (watch out for inheritance,
+    not present in Morphs by default (Watch out for inheritance,
     though!). For a simple example of how they can be used to adjust
     scroll bars in a scroll frame please have a look at their
     implementation in FrameMorph.
@@ -645,13 +645,13 @@
         droppedImage(aCanvas, name, embeddedData)
         droppedSVG(anImage, name)
 
-    events to interested Morphs at the mouse pointer. If you want your Morph
-    to e.g. import outside images you can add the droppedImage() and / or the
+    Events to interested Morphs at the mouse pointer. If you want your Morph
+    to E.G. import outside images, you can add the droppedImage() and/or the
     droppedSVG() methods to it. The parameter passed to the event handles is
     a new offscreen canvas element representing a copy of the original image
-    element which can be directly used, e.g. by assigning it to another
+    element which can be directly used, E.G. by assigning it to another
     Morph's cachedImage property. In the case of a dropped SVG it is an image
-    element (not a canvas), which has to be rasterized onto a canvas before
+    element (Not a canvas), which has to be rasterized onto a canvas before
     it can be used. The benefit of handling SVGs as image elements is that
     rasterization can be deferred until the destination scale is known, taking
     advantage of SVG's ability for smooth scaling. If instead SVGs are to be
@@ -659,7 +659,7 @@
 
         MorphicPreferences.rasterizeSVGs
 
-    preference to <true>. In this case dropped SVGs also trigger the
+    Preference to <true>. In this case dropped SVGs also trigger the
     droppedImage() event with a canvas containing a rasterized version of the
     SVG.
 
@@ -668,13 +668,13 @@
     the image. Such a payload has to be identified by an agreed-upon marker.
     The default tag is stored in MorphicPreferences and can be overriden by
     apps wishing to make use of this feature. If such an embedded text-payload
-    is found inside a PNG it is passed as the optional third "embeddedData"
+    is found inside a PNG it is passed as the optional 3rd "embeddedData"
     parameter to the "droppedImage()" event. embedded text only applies to PNGs.
-    You can embed a string into the PNG metadata of a PNG by  calling
+    You can embed a string into the PNG metadata of a PNG by calling
 
         embedMetadataPNG(aCanvas, aString)
 
-    with a raster image represented by a canvas and a string that is to be
+    With a raster image represented by a canvas and a string that is to be
     embedded into the PNG's metadata.
 
     The same event mechanism applies to drops of audio or text files from
@@ -685,24 +685,24 @@
         droppedAudio(anAudio, name)
         droppedText(aString, name, type)
 
-    events to interested Morphs at the mouse pointer.
+    Events to interested Morphs at the mouse pointer.
 
-    if none of the above content types can be determined, the file contents
+    If none of the above content types can be determined, the file contents
     is dispatched as an ArrayBuffer to interested Morphs:
 
         droppedBinary(anArrayBuffer, name)
 
-    In case multiple files are dropped simulateneously the events
+    In case multiple files are dropped simulateneously, the events
 
         beginBulkDrop()
         endBulkDrop()
 
-    are dispatched to to Morphs interested in bracketing the bulk operation,
+    Are dispatched to to Morphs interested in bracketing the bulk operation,
     and the endBulkDrop() event is only signalled after the contents last file
     has been asynchronously made available.
 
 
-    (e) keyboard events
+    7.3.5: Keyboard Events
     -------------------
     The World dispatches the following key events to its active
     keyboard focus:
@@ -711,26 +711,26 @@
         keydown
         keyup
 
-    Currently the only morphs which acts as keyboard focus are
-    CursorMorph - the basic text editing widget - and MenuMorph elements.
-    If you wish to add keyboard support to your morph you need to add event
+    Currently the only Norphs which acts as keyboard focus are
+    CursorMorph - The basic text editing widget - And MenuMorph elements.
+    If you wish to add keyboard support to your Morph you need to add event
     handling methods for
 
         processKeyPress(event)
         processKeyDown(event)
         processKeyUp(event)
 
-    and activate them by assigning your morph to the World's
+    And activate them by assigning your Morph to the World's
 
         keyboardFocus
 
-    property.
+    Property.
 
     Note that processKeyUp() is optional and doesn't have to be present
-    if your morph doesn't require it.
+    if your Morph doesn't require it.
 
 
-    (f) resize event
+    7.3.6: Resize Event
     ----------------
     The Window resize event is handled by the World and allows the
     World's extent to be adjusted so that it always completely fills
@@ -749,11 +749,11 @@
 
     Use this when creating a web page with multiple Worlds.
 
-    if "useFillPage" is turned on the World dispatches an
+    If "useFillPage" is turned on the World dispatches an
 
         reactToWorldResize(newBounds)
 
-    events to all of its children (toplevel only), allowing each to
+    Events to all of its children (toplevel only), allowing each to
     adjust to the new World bounds by implementing a corresponding
     method, the passed argument being the World's new dimensions after
     completing the resize. By default, the "reactToWorldResize" Method
@@ -762,7 +762,7 @@
     Example:
 
     Add the following method to your Morph to let it automatically
-    fill the whole World, but leave a 10 pixel border uncovered:
+    fill the whole World, but leave a 10-pixel border uncovered:
 
         MyMorph.prototype.reactToWorldResize = function (rect) {
             this.changed();
@@ -771,21 +771,21 @@
         };
 
 
-    (g) combined mouse-keyboard events
+    7.3.7: Combined Mouse-Keyboard Events
     ----------------------------------
     Occasionally you'll want an object to react differently to a mouse
     click or to some other mouse event while the user holds down a key
-    on the keyboard. Such "shift-click", "ctl-click", or "alt-click"
+    on the keyboard. Such "Shift-Click", "Ctrl-Click", or "Alt-Click"
     events can be implemented by querying the World's
 
         currentKey
 
-    property inside the function that reacts to the mouse event. This
+    Property inside the function that reacts to the mouse event. This
     property stores the keyCode of the key that's currently pressed.
     Once the key is released by the user it reverts to null.
 
 
-    (h) text editing events
+    7.3.8: Text Editing Events
     -----------------------
     Much of Morphic's "liveliness" comes out of allowing text elements
     (instances of either single-lined StringMorph or multi-lined TextMorph)
@@ -801,7 +801,7 @@
 
         reactToKeystroke(event)
 
-    is escalated up its parent chain, the "event" parameter being the
+    Is escalated up its parent chain, the "event" parameter being the
     original one received by the World.
 
     Whenever the input changes, by adding or removing one or more characters,
@@ -809,11 +809,11 @@
 
         reactToInput(event)
 
-    is escalated up its parent chain, the "event" parameter again being the
+    Is escalated up its parent chain, the "event" parameter again being the
     original one received by the World or by the IME element.
 
     Note that the "reactToKeystroke" event gets triggered before the input
-    changes, and thus befgore the "reactToInput" event fires.
+    changes, and thus before the "reactToInput" event fires.
 
     Once the user has completed the edit, the following events are
     dispatched:
@@ -828,20 +828,20 @@
 
         reactToEdit(StringOrTextMorph)
 
-    is triggered.
+    Is triggered.
 
     If the MorphicPreference's
 
         useSliderForInput
 
-    setting is turned on, a slider is popped up underneath the currently
+    Setting is turned on, a slider is popped up underneath the currently
     edited text element letting the user insert numbers out of the given
-    slider range. Whenever this happens, i.e. whenever the slider is moved
+    slider range. Whenever this happens, I.E. whenever the slider is moved
     or while the slider button is pressed, a stream of
 
         reactToSliderEdit(StringOrTextMorph)
 
-    events is dispatched, allowing for "Bret-Victor" style "scrubbing"
+    Events is dispatched, allowing for "Bret-Victor" style "scrubbing"
     applications.
 
     In addition to user-initiated events text elements also emit
@@ -850,66 +850,66 @@
     get a chance to react if something about the embedded text has been
     modified programmatically. These events are:
 
-        layoutChanged() - sent only from instances of TextMorph
-        fixLayout() - sent from instances of all Morphs, including StringMorphs
+        layoutChanged() - Sent only from instances of TextMorph
+        fixLayout() - Sent from instances of all Morphs, including StringMorphs
 
-    they are different so that Morphs which contain both multi-line and
+    They are different so that Morphs which contain both multi-line and
     single-line text elements can hold them apart.
 
 
-    (4) stepping
+    7.4: Stepping
     ------------
     Stepping is what makes Morphic "magical". Two properties control
     a morph's stepping behavior: the fps attribute and the step()
     method.
 
-    By default the
+    By default, the
 
         step()
 
-    method does nothing. As you can see in the examples of BouncerMorph
+    Method does nothing. As you can see in the examples of BouncerMorph
     and MouseSensorMorph you can easily override this inherited method
     to suit your needs.
 
     By default the step() method is called once per display cycle.
-    Depending on the number of actively stepping morphs and the
+    Depending on the number of actively stepping Morphs and the
     complexity of your step() methods this can cause quite a strain on
     your CPU, and also result in your application behaving differently
     on slower computers than on fast ones.
 
-    setting
+    Setting
 
         myMorph.fps
 
-    to a number lower than the interval for the main loop lets you free
-    system resources (albeit at the cost of a less responsive or slower
-    behavior for this particular morph).
+    To a number lower than the interval for the main loop lets you free
+    system resources (Albeit at the cost of a less responsive or slower
+    behavior for this particular Morph).
 
 
-    (5) creating new kinds of morphs
+    7.5: Creating New Kinds Of Morphs
     --------------------------------
-    The real fun begins when you start to create new kinds of morphs
-    with customized shapes. Imagine, e.g. jigsaw puzzle pieces or
+    The real fun begins when you start to create new kinds of Morphs
+    with customized shapes. Imagine, E.G. jigsaw puzzle pieces or
     musical notes.
 
     When you create your own morphs, you'll want to think about how to
     graphically render it, how to determine its size and whether it needs
-    to arrange any other parts ("submorphs). There are also ways to specify
+    to arrange any other parts ("Submorphs"). There are also ways to specify
     its collision detection behavior and define "untouchable" regions
-    ("holes").
+    ("Holes").
 
 
-    (a) drawing the shape
+    7.5.1: Drawing The Shape
     ---------------------
     For this you have to override the default
 
         render(ctx)
 
-    method.
+    Method.
 
-    This method draws the morph's shape using a given 2d graphics context.
+    This method draws the Morph's shape using a given 2D graphics context.
     Note that any coordinates used in the render() method must be relative
-    to the morph's own position, i.e. you don't need to worry about
+    to the Morph's own position, I.E. you don't need to worry about
     translating the shape yourself.
 
     You can use the following template for a start:
@@ -919,45 +919,45 @@
             ctx.fillRect(0, 0, this.width(), this.height());
         };
 
-    it renders the morph as a solid rectangle completely filling its
+    It renders the Morph as a solid rectangle completely filling its
     area with its current color.
     
     Notice how the coordinates for the fillRect() call are relative
-    to the morph's own position: The rendered rectangle's origin is always
-    located at (0, 0) regardless of the morph's actual position in the World.
+    to the Morph's own position: The rendered rectangle's origin is always
+    located at (0, 0) regardless of the Morph's actual position in the World.
 
 
-    (b) determining extent and arranging submorphs
+    7.5.2: Determining Extent And Arranging Submorphs
     ----------------------------------------------
-    If your new morph also needs to determine its extent and, e.g. to
-    encompass one or several other morphs, or arrange the layout of its
-    submorphs, make sure to also override the default
+    If your new Morph also needs to determine its extent and, E.G. to
+    encompass one or several other Morphs, or arrange the layout of its
+    Submorphs, make sure to also override the default
     
         fixLayout()
     
-    method.
+    Method.
     
-    NOTE: If you need to set the morph's extent inside, in order to avoid
-    infinite recursion instead of calling morph.setExtent() - which will
-    in turn call morph.fixLayout() again - directly modify the morph's
+    NOTE: If you need to set the Morph's extent inside, in order to avoid
+    infinite recursion instead of calling morph.setExtent() - Which will
+    in turn call morph.fixLayout() again - Directly modify the morph's
     
         bounds
 
-    property. Bounds is a rectable on which you can also use the same
+    Property. Bounds is a rectable on which you can also use the same
     size-setters, e.g. by calling:
     
         this.bounds.setExtent()
 
 
-    (c) pixel-perfect pointing events
+    7.5.3: Pixel-Perfect Pointing Events
     ---------------------------------
-    In case your new morph needs to support pixel-perfect collision detection
-    with other morphs or pointing devices such as the mouse or a stylus you
+    In case your new Morph needs to support pixel-perfect collision detection
+    with other Morphs or pointing devices such as the mouse or a stylus you
     can set the inherited attribute
     
         isFreeForm = bool
     
-    to "true" (default is "false"). This makes sense the more your morph's
+    To "true" (default is "false"). This makes sense the more your morph's
     visual shape diverges from a rectangle. For example, if you create a
     circular filled morph the default setting will register mouse-events
     anywhere within its bounding box, e.g. also in the transparent parts
