@@ -1,11 +1,12 @@
 /*
 
-    morphic.js
+    Morphic.js
 
     A lively Web-GUI
     Inspired by Squeak
 
     Written by Jens Mönig
+    
     jens@moenig.org
 
     Copyright (C) 2010-2023 by Jens Mönig
