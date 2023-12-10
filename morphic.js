@@ -2,10 +2,10 @@
 
     morphic.js
 
-    a lively Web-GUI
-    inspired by Squeak
+    A lively Web-GUI
+    Inspired by Squeak
 
-    written by Jens Mönig
+    Written by Jens Mönig
     jens@moenig.org
 
     Copyright (C) 2010-2023 by Jens Mönig
@@ -26,48 +26,48 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 
-    documentation contents
+    Documentation Contents
     ----------------------
-    I. inheritance hierarchy
-    II. object definition toc
-    III. yet to implement
-    IV. open issues
-    V. browser compatibility
-    VI. the big picture
-    VII. programming guide
-        (1) setting up a web page
-            (a) single world
-            (b) multiple worlds
-            (c) an application
-        (2) manipulating morphs
-        (3) events
-            (a) mouse events
-            (b) context menu
-            (c) dragging
-            (d) dropping
-            (e) keyboard events
-            (f) resize event
-            (g) combined mouse-keyboard events
-            (h) text editing events
-        (4) stepping
-        (5) creating new kinds of morphs
-            (a) drawing the shape
-            (b) determining extent and arranging submorphs
-            (c) pixel-perfect pointing events
-            (d) caching the shape
-            (e) holes
-            (f) updating
-            (g) duplicating
-        (6) development and user modes
-        (7) turtle graphics
-        (8) supporting high-resolution "retina" screens
-        (9 animations
-        (10) minifying morphic.js
-    VIII. acknowledgements
-    IX. contributors
+    1: Inheritance Hierarchy
+    2. Object Definition TOC
+    3: Yet To Implement
+    4: Open Issues
+    5: Browser Compatibility
+    6: The Big Picture
+    7: Programming Guide
+        7.1: Setting Up A Web Page
+            7.1.1: Single World
+            7.1.2: Multiple Worlds
+            7.1.3: An Application
+        7.2: Manipulating Morphs
+        7.3: Events
+            7.3.1: Mouse Events
+            7.3.2: Context Menu
+            7.3.3: Dragging
+            7.3.4: Dropping
+            7.3.5: Keyboard Events
+            7.3.6: Resize Event
+            7.3.7: Combined Mouse-Keyboard Events
+            7.3.8: Text Editing Events
+        7.4: Stepping
+        7.5: Creating New Kinds Of Morphs
+            7.5.1: Drawing The Shape
+            7.5.2: Determining Extent And Arranging Submorphs
+            7.5.3: Pixel-Perfect Pointing Events
+            7.5.4: Caching The Shape
+            7.5.5: Holes
+            7.5.6: Updating
+            7.5.7: Duplicating
+        7.6: Development And User Modes
+        7.7: Turtle Graphics
+        7.8: Supporting High-Resolution "Retina" Screens
+	7.9: Animations
+        7.10: Minifying Morphic.js
+    8: Acknowledgements
+    9. Contributors
 
 
-    I. hierarchy
+    1. Inheritance Hierarchy
     -------------
     the following tree lists all constructors hierarchically,
     indentation indicating inheritance. Refer to this list to get a
