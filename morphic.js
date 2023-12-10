@@ -973,42 +973,42 @@
     to consider: Caching the shape and specifying "untouchable" regions.
 
 
-    (d) caching the shape
+    7.5.4: Caching The Shape
     ---------------------
     In case of pixel-perfect free-form collision detection it makes sense to
-    cache your morph's current shape, so it doesn't have to be re-drawn onto a
+    cache your Morph's current shape, so it doesn't have to be re-drawn onto a
     new Canvas element every time the mouse moves over its bounding box.
     For this you can set then inherited
     
         isCachingImage = bool
         
-    attribute to "true" instead of the default "false" value. This will
+    Attribute to "true" instead of the default "false" value. This will
     significantly speed up collision detection and smoothen animations that
     continuously perform collision detection. However, it will also consume
     more memory. Therefore it's best to use this setting with caution.
     
     Snap! caches the shapes of sprites but not those of blocks. Instead it
-    manages the insides of C- and E-shaped blocks through the morphic "holes"
+    manages the insides of C-shaped and E-shaped blocks through the Morphic "holes"
     mechanism.
 
 
-    (e) holes
+    7.5.5: Holes
     ---------
     An alternative albeit not as precise and general way for handling
-    irregularly shaped morphs with "untouchable" regions is to specify a set
-    of rectangular areas in which pointing events (mouse or touch) are not
+    irregularly shaped Morphs with "untouchable" regions is to specify a set
+    of rectangular areas in which pointing events (Mouse or touch) are not
     registered.
 
     By default the inherited
     
         holes = []
 
-    property is an empty array. You can add one or more morphic Rectangle
+    Property is an empty array. You can add one or more morphic Rectangle
     objects to this list, representing regions, in which occurring events will
     instead be passed on to the morph underneath.
     
     Note that, same with the render() method, the coordinates of these
-    rectangular holes must be specified relative to your morph's position.
+    rectangular holes must be specified relative to your Morph's position.
 
     If you specify holes you might find the need to adjust their layout
     depending on the layout of your morph. To accomplish this you can override
@@ -1019,9 +1019,9 @@
     method.
 
 
-    (f) updating
+    7.5.6: Updating
     ------------
-    One way for morphs to become alive is form them to literally "morph" their
+    One way for morphs to become alive is form them to literally "Morph" their
     shape depending on whicher contest you wish them to react to. For example,
     you might want the user to interactively draw a shape using their fingers
     on a touch screen device, or you want the user to be able to "pinch" or
@@ -1032,59 +1032,59 @@
 
         rerender()
 
-    after every change to your morph's appearance that requires rerendering.
+    After every change to your morph's appearance that requires rerendering.
     
     Such changes are usually only happening when the morph's dimensions or
     other visual properties - such as its color - changes.
 
 
-    (g) duplicating
+    7.5.7: Duplicating
     ---------------
-    If your new morph stores or references to other morphs outside of
-    the submorph tree in other properties, be sure to also override the
+    If your new Morph stores or references to other Morphs outside of
+    the Submorph tree in other properties, be sure to also override the
     default
 
         updateReferences()
 
-    method if you want it to support duplication.
+    Method if you want it to support duplication.
 
 
-    (6) development and user modes
+    7.6: Development And User Modes
     ------------------------------
     When working with Squeak on Scratch or BYOB among the features I
     like the best and use the most is inspecting what's going on in
-    the World while it is up and running. That's what development mode
-    is for (you could also call it debug mode). In essence development
-    mode controls which context menu shows up. In user mode right
-    clicking (or double finger tapping) a morph invokes its
+    the World while it is up and running. That's what Development Mode
+    is for (You could also call it debug mode). In essence, Development
+    Mode controls which context menu shows up. In User Mode, right-clicking
+    (Or double finger tapping) a Morph invokes its
 
         customContextMenu
 
-    property, whereas in development mode only the general
+    Property, whereas in Development Mode only the general
 
         developersMenu()
 
-    method is called and the resulting menu invoked. The developers'
-    menu features Gui-Builder-wise functionality to directly inspect,
-    take apart, reassamble and otherwise manipulate morphs and their
+    Method is called and the resulting menu invoked. The Developers'
+    Menu features Gui-Builder-wise functionality to directly inspect,
+    take apart, reassamble and otherwise manipulate Morphs and their
     contents.
 
-    Instead of using the "customContextMenu" property you can also
+    Instead of using the "customContextMenu" property, you can also
     assign a more dynamic contextMenu by overriding the general
 
         userMenu()
 
-    method with a customized menu constructor. The difference between
+    Method with a customized menu constructor. The difference between
     the customContextMenu property and the userMenu() method is that
     the former is also present in development mode and overrides the
     developersMenu() result. For an example of how to use the
     customContextMenu property have a look at TextMorph's evaluation
     menu, which is used for the Inspector's evaluation pane.
 
-    When in development mode you can inspect every Morph's properties
-    with the inspector, including all of its methods. The inspector
+    When in Development Mode, you can inspect every Morph's properties
+    with the Inspector, including all of its methods. The Inspector
     also lets you add, remove and rename properties, and even edit
-    their values at runtime. Like in a Smalltalk environment the inspect
+    their values at runtime. Like in a Smalltalk environment the Inspect
     features an evaluation pane into which you can type in arbitrary
     JavaScript code and evaluate it in the context of the inspectee.
 
@@ -1094,7 +1094,7 @@
     confuse end-users with inspectors and meta-level stuff.
 
 
-    (7) turtle graphics
+    7.7: Turtle Graphics
     -------------------
 
     The basic Morphic kernel features a simple LOGO turtle constructor
@@ -1102,33 +1102,33 @@
 
         PenMorph
 
-    which you can use to draw onto its parent Morph. By default every
+    Which you can use to draw onto its parent Morph. By default every
     Morph in the system (including the World) is able to act as turtle
     canvas and can display pen trails. Pen trails will be lost whenever
-    the trails morph (the pen's parent) performs a "render()"
+    the trails Morph (The pen's parent) performs a "render()"
     operation. If you want to create your own pen trails canvas, you
     may wish to modify its
 
         penTrails()
 
-    property, so that it keeps a separate offscreen canvas for pen
-    trails (and doesn't loose these on redraw).
+    Property, so that it keeps a separate offscreen canvas for pen
+    trails (And doesn't lose these on redraw).
 
-    the following properties of PenMorph are relevant for turtle
+    The following properties of PenMorph are relevant for turtle
     graphics:
 
-        color       - a Color
-        size        - line width of pen trails
-        heading     - degrees
-        isDown      - drawing state
+        color       - A Color
+        size        - Line width of pen trails
+        heading     - Degrees
+        isDown      - Drawing state
 
-    the following commands can be used to actually draw something:
+    The following commands can be used to actually draw something:
 
-        up()        - lift the pen up, further movements leave no trails
-        down()      - set down, further movements leave trails
-        clear()     - remove all trails from the current parent
-        forward(n)  - move n steps in the current direction (heading)
-        turn(n)     - turn right n degrees
+        up()        - Lift the pen up, further movements leave no trails
+        down()      - Set down, further movements leave trails
+        clear()     - Remove all trails from the current parent
+        forward(n)  - Move N steps in the current direction (Heading)
+        turn(n)     - Turn right N degrees
 
     Turtle graphics can best be explored interactively by creating a
     new PenMorph object and by manipulating it with the inspector
@@ -1143,24 +1143,24 @@
     of recursion that's displayable by wrapping WARP around your
     recursive function call:
 
-    example:
+    Example:
 
         myPen.warp(function () {
             myPen.tree(12, 120, 20);
         })
 
-    will be much faster than just invoking the tree function, because it
+    Will be much faster than just invoking the tree function, because it
     prevents the parent's parent from keeping track of every single line
     segment and instead redraws the outcome in a single pass.
 
 
-    (8) supporting high-resolution "retina" screens
+    7.8: Supporting High-Resolution "Retina" Screens
     -----------------------------------------------
-    By default retina support gets installed when Morphic.js loads. There
-    are two global functions that let you test for retina availability:
+    By default, Retina Support gets installed when Morphic.js loads. There
+    are 2 global functions that let you test for Retina availability:
 
-        isRetinaSupported() - Bool, answers if retina support is available
-        isRetinaEnabled()   - Bool, answers if currently in retina mode
+        isRetinaSupported() - Boolean, answers if retina support is available
+        isRetinaEnabled()   - Boolean, answers if currently in Retina Mode
 
     and two more functions that let you control retina support if it is
     available:
@@ -1181,39 +1181,39 @@
 
         newCanvas(extentPoint [, nonRetinaFlag])
 
-    If retina support is enabled such new canvasses will automatically be
-    high-resolution canvasses, unless the newCanvas() function is given an
-    otherwise optional second Boolean <true> argument that explicitly makes
-    it a non-retina canvas.
+    If Retina Support is enabled, such new canvases will automatically be
+    high-resolution canvases, unless the newCanvas() function is given an
+    otherwise optional 2nd Boolean <true> argument that explicitly makes
+    it a non-Retina canvas.
 
-    Not the whole canvas API is supported by Morphic's retina utilities.
+    Not the whole canvas API is supported by Morphic's Retina utilities.
     Especially if your code uses putImageData() you will want to "downgrade"
-    a target high-resolution canvas to a normal-resolution ("non-retina")
+    a target high-resolution canvas to a normal-resolution ("Non-Retina")
     one before using
 
         normalizeCanvas(aCanvas [, copyFlag])
 
     This will change the target canvas' resolution in place (!). If you
-    pass in the optional second Boolean <true> flag the function returns
+    pass in the optional 2nd Boolean <true> flag the function returns
     a non-retina copy and leaves the target canvas unchanged. An example
     of this normalize mechanism is converting the penTrails layer of Snap's
-    stage (high-resolution) into a sprite-costume (normal resolution).
+    stage (high-resolution) into a sprite-costume (Normal resolution).
 
 
-    (9) animations
+    7.9: Animations
     ---------------
     Animations handle gradual transitions between one state and another over a
     period of time. Transition effects can be specified using easing functions.
     An easing function maps a fraction of the transition time to a fraction of
-    the state delta. This way accelerating / decelerating and bouncing sliding
+    the state delta. This way accelerating/decelerating and bouncing sliding
     effects can be accomplished.
 
-    Animations are generic and not limited to motion, i.e. they can also handle
+    Animations are generic and not limited to motion, I.E. they can also handle
     other transitions such as color changes, transparency fadings, growing,
     shrinking, turning etc.
 
-    Animations need to be stepped by a scheduler, e. g. an interval function.
-    In Morphic the preferred way to run an animation is to register it with
+    Animations need to be stepped by a scheduler, E.G. an interval function.
+    In Morphic, the preferred way to run an animation is to register it with
     the World by adding it to the World's animation queue. The World steps each
     registered animation once per display cycle independently of the Morphic
     stepping mechanism.
@@ -1223,38 +1223,38 @@
         glideTo()
         fadeTo()
 
-    and
+    And
 
         slideBackTo()
 
-    are implemented.
+    Are implemented.
 
 
-    (10) minifying morphic.js
+    7.10: Minifying Morphic.js
     -------------------------
     Coming from Smalltalk and being a Squeaker at heart I am a huge fan
-    of browsing the code itself to make sense of it. Therefore I have
-    included this documentation and (too little) inline comments so all
+    of browsing the code itself to make sense of it. Therefore, I have
+    included this documentation and (Too little) inline comments so all
     you need to get going is this very file.
 
     Nowadays with live streaming HD video even on mobile phones 250 KB
     shouldn't be a big strain on bandwith, still minifying and even
-    compressing morphic.js down do about 100 KB may sometimes improve
+    compressing Morphic.js down do about 100 KB may sometimes improve
     performance in production use.
 
     Being an attorney-at-law myself you programmer folk keep harassing
     me with rabulistic nitpickings about free software licenses. I'm
-    releasing morphic.js under an AGPL license. Therefore please make
+    releasing Morphic.js under an AGPL license. Therefore please make
     sure to adhere to that license in any minified or compressed version.
 
 
-    VIII. acknowledgements
+    8: Acknowledgements
     ----------------------
     The original Morphic was designed and written by Randy Smith and
     John Maloney for the SELF programming language, and later ported to
     Squeak (Smalltalk) by John Maloney and Dan Ingalls, who has also
     ported it to JavaScript (the Lively Kernel), once again setting
-    a "Gold Standard" for self sustaining systems which morphic.js
+    a "Gold Standard" for self sustaining systems which Morphic.js
     cannot and does not aspire to meet.
 
     This Morphic implementation for JavaScript is not a direct port of
@@ -1273,21 +1273,21 @@
     and explanations for all things Morphic and for being my all time
     programming hero.
 
-    I have originally written morphic.js in Florian Balmer's Notepad2
-    editor for Windows, later switched to Apple's Dashcode and later
-    still to Apple's Xcode. I've also come to depend on both Douglas
+    I have originally written Morphic.js in Florian Balmer's Notepad2
+    Editor for Windows, later switched to Apple's Dashcode and later
+    still to Apple's XCode. I've also come to depend on both Douglas
     Crockford's JSLint and later the JSHint project, as well as on
     Mozilla's Firebug and Google's Chrome to get it right.
 
 
-    IX. contributors
+    9: Contributors
     ----------------------
     Joe Otto found and fixed many early bugs and taught me some tricks.
     Nathan Dinsmore contributed mouse wheel scrolling, cached
     background texture handling, countless bug fixes and optimizations.
     Ian Reynolds contributed backspace key handling for Chrome.
     Davide Della Casa contributed performance optimizations for Firefox.
-    Jason N (@cyderize) contributed native copy & paste for text editing.
+    Jason N (@Cyderize) contributed native copy & paste for text editing.
     Bartosz Leper contributed retina display support.
     Zhenlei Jia and Dariusz Dorożalski pioneered IME text editing.
     Dariusz Dorożalski and Jesus Villalobos contributed embedding blocks
@@ -1301,11 +1301,11 @@
     - Jens Mönig
 */
 
-// Global settings /////////////////////////////////////////////////////
+// Global Settings /////////////////////////////////////////////////////
 
-/*global window, HTMLCanvasElement, FileReader, Audio, FileList, Map*/
+/* Global Window, HTMLCanvasElement, FileReader, Audio, FileList, Map */
 
-/*jshint esversion: 11, bitwise: false*/
+/* JSHint ESVersion: 11, Bitwise: false */
 
 var morphicVersion = '2023-November-07';
 var modules = {}; // keep track of additional loaded modules
@@ -1322,7 +1322,7 @@ Object.freeze(WHITE);
 Object.freeze(CLEAR);
 
 var standardSettings = {
-    minimumFontHeight: getMinimumFontHeight(), // browser settings
+    minimumFontHeight: getMinimumFontHeight(), // Browser settings
     globalFontFamily: '',
     menuFontName: 'sans-serif',
     menuFontSize: 12,
