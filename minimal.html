@@ -5,7 +5,7 @@
 		<title>Morphic!</title>
 		<script type="text/javascript" src="morphic.js"></script>
 		<script type="text/javascript">			
-			var	world; 
+			var world; 
 
 			window.onload = function () {
 				world = new WorldMorph(document.getElementById('world'));
@@ -14,7 +14,7 @@
 			};
 
 			function loop() {
-                requestAnimationFrame(loop);
+                		requestAnimationFrame(loop);
 				world.doOneCycle();
 			}
 		</script>
